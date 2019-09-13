@@ -1,0 +1,36 @@
+Arguments: 
+  /usr/bin/node /home/velosobr/.yarn/bin/yarn.js add express
+
+PATH: 
+  /home/velosobr/.yarn/bin:/home/velosobr/.config/yarn/global/node_modules/.bin:/home/velosobr/bin:/usr/local/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/home/velosobr/bin:/var/lib/snapd/snap/bin:/path/to/dir
+
+Yarn version: 
+  1.17.3
+
+Node version: 
+  10.16.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/express: ETIMEDOUT
+      at Timeout._onTimeout (/home/velosobr/.yarn/lib/cli.js:141124:19)
+      at ontimeout (timers.js:436:11)
+      at tryOnTimeout (timers.js:300:5)
+      at listOnTimeout (timers.js:263:5)
+      at Timer.processTimers (timers.js:223:10)
+
+npm manifest: 
+  {
+    "name": "modulo01",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
