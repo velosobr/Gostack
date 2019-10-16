@@ -8,28 +8,46 @@ const users = ['Lino', 'Cláudio', 'Karla'];
 // query Params = ?teste=1
 // Request body = {"name": Diego, "email": "lino.veloso@grad.ufsc.br"}
 
+server.use((req, res, next) => {
+  console.time('req')
+  console.log(`Método: ${req.method}; URL: ${req.url}; Pathg: ${req.path}`);
+  next();
+
+  console.timeEnd('req');
+
+})
+/*
+MIDLEWARE interno
+*/
+function checkUserExists(req, res, next) {
+  if(!req.body.name){
+    return res.status(400).json({
+      error: "User name is required"
+    })
+  }
+  return next();
+}
+
+function checkIndexExists(req, res, next) {
+  if(!users[req.params.index]){
+    return res.status(400).json({
+      error: "User does not exists"
+    })
+  }
+
+  return next();
+  
+}
 //CRUD - Create, Read, Update, Delete
 
-server.get('/users', (req, res)=>{
+server.get('/users', (req, res) => {
   return res.json(users)
 });
-/*
-server.get('/users', (req, res) =>{
-  const name = req.query.name;
 
-  return res.json({
-    message: `Hello ${name}`,
-    name: `Olá ${name}`,
-    endereco: {
-      rua: 'Jordelino João da Rosa',
-      obs: 'apartamento'
-    }
-  })
-});
-*/
+
 // Route Params = /users/1
 
-server.get('/users/:index', (req, res) =>{
+server.get('/users/:index', checkIndexExists, (req, res) => {
   const { index } = req.params;
 
   return res.json({
@@ -38,30 +56,29 @@ server.get('/users/:index', (req, res) =>{
 });
 
 //Create
+server.post('/users',checkUserExists, (req, res) => {
+  const { name } = req.body;
 
-server.post('/users', (req,res) =>{
-const { name } = req.body;
-
-users.push(name);
-return res.json(users)
+  users.push(name);
+  return res.json(users)
 
 })
 
 //Update
 
-server.put('/users/:index', (req,res) => {
-const { index } = req.params;
-const { name } = req.body;
+server.put('/users/:index', checkUserExists, checkIndexExists, (req, res) => {
+  const { index } = req.params;
+  const { name } = req.body;
 
-users[index] = name;
+  users[index] = name;
 
-return res.json(users)
+  return res.json(users)
 
 })
 
 //Delete
 
-server.delete('/users/:index' , (req, res) =>{
+server.delete('/users/:index', checkIndexExists, (req, res) => {
   const { index } = req.params;
   users.splice(index, 1);
 
