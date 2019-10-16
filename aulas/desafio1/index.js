@@ -73,7 +73,7 @@ server.delete('/projects/:id', checkProjectExists,(req,res) => {
 
 //post com id
 
-server.post('/projects/:id', (req, res) => {
+server.post('/projects/:id/tasks', checkProjectExists, (req, res) => {
   const { id } = req.params;
   const {title} = req.body;
 
