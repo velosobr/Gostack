@@ -1,0 +1,17 @@
+{
+  "name": "desafio1",
+  "version": "1.0.0",
+  "description": "Desafio do bootcamp",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.3"
+  },
+  "author": "velosobr",
+  "license": "ISC"
+}
