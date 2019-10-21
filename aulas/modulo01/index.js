@@ -20,7 +20,7 @@ server.use((req, res, next) => {
 MIDLEWARE interno
 */
 function checkUserExists(req, res, next) {
-  if(!req.body.name){
+  if (!req.body.name) {
     return res.status(400).json({
       error: "User name is required"
     })
@@ -28,15 +28,15 @@ function checkUserExists(req, res, next) {
   return next();
 }
 
-function checkIndexExists(req, res, next) {
-  if(!users[req.params.index]){
+function checkUserInArray(req, res, next) {
+  if (!users[req.params.index]) {
     return res.status(400).json({
       error: "User does not exists"
     })
   }
 
   return next();
-  
+
 }
 //CRUD - Create, Read, Update, Delete
 
@@ -47,7 +47,7 @@ server.get('/users', (req, res) => {
 
 // Route Params = /users/1
 
-server.get('/users/:index', checkIndexExists, (req, res) => {
+server.get('/users/:index', checkUserInArray, (req, res) => {
   const { index } = req.params;
 
   return res.json({
@@ -56,17 +56,18 @@ server.get('/users/:index', checkIndexExists, (req, res) => {
 });
 
 //Create
-server.post('/users',checkUserExists, (req, res) => {
+server.post('/users', checkUserExists, (req, res) => {
   const { name } = req.body;
 
   users.push(name);
+  
   return res.json(users)
 
 })
 
 //Update
 
-server.put('/users/:index', checkUserExists, checkIndexExists, (req, res) => {
+server.put('/users/:index', checkUserExists, checkUserInArray, (req, res) => {
   const { index } = req.params;
   const { name } = req.body;
 
@@ -78,7 +79,7 @@ server.put('/users/:index', checkUserExists, checkIndexExists, (req, res) => {
 
 //Delete
 
-server.delete('/users/:index', checkIndexExists, (req, res) => {
+server.delete('/users/:index', checkUserInArray, (req, res) => {
   const { index } = req.params;
   users.splice(index, 1);
 
