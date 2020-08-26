@@ -57,8 +57,14 @@ exports.default = {
             return __generator(this, function (_a) {
                 emailService = new EmailService_1.default();
                 emailService.sendMail({
-                    to: { name: 'lino Veloso', email: 'Lino.veloso@gmail.com' },
-                    message: { subject: 'Início das aulas', body: 'As aulas vão começar dia 31/08' }
+                    to: {
+                        name: 'lino Veloso',
+                        email: 'Lino.veloso@gmail.com'
+                    },
+                    message: {
+                        subject: 'Início das aulas',
+                        body: 'As aulas vão começar dia 31/08'
+                    }
                 });
                 return [2 /*return*/, res.json("Email Enviado sucesso")];
             });
