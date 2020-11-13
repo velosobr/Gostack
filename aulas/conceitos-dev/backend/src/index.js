@@ -4,7 +4,7 @@ const app = express();
 
 app.get('/projects', (req, res) => {
    return res.json({
-      message: "Hello"
+      message: "Hello team"
    })
 });
 
