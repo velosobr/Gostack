@@ -11,11 +11,25 @@ const app = express();
  */
  
 app.get('/projects', (req, res) => {
-   return res.json({
-      message: "Hello team"
-   })
+   return res.json([
+      'Project 1',
+      'project 2'
+   ]);
 });
 
+app.post('/projects', (req, res) => {
+   return res.json([
+      'Project 1',
+      'project 2'
+   ]);
+})
+
+app.put('/projects/:id', (req, res) => {
+   return res.json([
+      'Project 1',
+      'project 2'
+   ]);
+})
 app.listen(3333, () =>{
    console.log("🚀 back-end server started!.");
 });
