@@ -20,15 +20,16 @@ app.use(express.json());
   * Request Body: Conteudo na hora de criar ou editar um recurso (JSON)
   */
  
-app.get('/projects', (req, res) => {
-const {title, owner} = req.query;
 
-console.log(title);
-console.log(owner);
-   return res.json([
-      'Project 1',
-      'project 2'
-   ]);
+  const projects = [];
+  
+app.get('/projects', (req, res) => {
+//const {title, owner} = req.query;
+
+//console.log(title);
+//console.log(owner);
+  
+return res.json(projects);
 });
 
 app.post('/projects', (req, res) => {
